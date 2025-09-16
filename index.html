@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Oranienbaum" rel="stylesheet">
+    <title>Jordan Ronchetti - The Journey So Far</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Oranienbaum', serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            max-height: 100vh;
+            background: linear-gradient(95deg, #198480, #198480);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transform: none !important;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 3%;
+            left: 3%;
+            right: 3%;
+            bottom: 3%;
+            width: 94%;
+            height: 94%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" width="1600" height="1680" ><defs><linearGradient id="blob1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23fbbf24;stop-opacity:0.06" /><stop offset="100%" style="stop-color:%23f472b6;stop-opacity:0.04" /></linearGradient><linearGradient id="blob2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.08" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0.02" /></linearGradient></defs><path d="M150,120 C200,80 270,90 330,130 C390,170 420,230 390,290 C360,350 300,380 240,370 C180,360 130,320 110,270 C90,220 100,170 120,140 C140,110 100,160 150,120 Z M480,180 C530,160 580,170 610,210 C640,250 630,300 590,330 C550,360 500,350 470,320 C440,290 450,250 470,220 C490,190 430,200 480,180 Z M520,440 C540,450 535,470 520,475 C505,480 490,470 485,455 C480,440 490,425 505,420 C520,415 500,430 520,440 Z M280,500 C320,490 360,500 390,530 C420,560 410,590 380,600 C350,610 310,600 280,570 C250,540 260,510 280,500 Z M80,400 C100,410 95,430 80,435 C65,440 50,430 45,415 C40,400 50,385 65,380 C80,375 60,390 80,400 Z" fill="url(%23blob1)"/><path d="M600,100 C630,110 625,140 610,150 C595,160 575,155 570,140 C565,125 575,110 590,105 C605,100 570,90 600,100 Z M170,380 C190,390 185,410 170,415 C155,420 140,410 135,395 C130,380 140,365 155,360 C170,355 150,370 170,380 Z" fill="url(%23blob2)"/></svg>') center/contain no-repeat;
+            animation: gentleFloat 20s ease-in-out infinite;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.22) rotate(1deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #f7c9c8;
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 620px;
+            height: 100%;
+            max-height: 420px;
+            margin: 0 auto 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            /* Replace this background with your actual photo: background: url('your-photo.jpg') center/cover; */
+            background: url('Headshot1.jpg') center/cover;
+            /*background: linear-gradient(135deg, #f97316 0%, #fb923c 30%, #fdba74 60%, #fed7aa 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><rect width="220" height="220" fill="%23f97316"/><circle cx="110" cy="85" r="25" fill="%23ffffff" opacity="0.8"/><circle cx="95" cy="85" r="3" fill="%23333"/><circle cx="125" cy="85" r="3" fill="%23333"/><path d="M100,95 Q110,105 120,95" stroke="%23333" stroke-width="2" fill="none"/><ellipse cx="110" cy="140" rx="35" ry="45" fill="%23ffffff" opacity="0.9"/></svg>') center/cover;*/
+            background-blend-mode: multiply;
+            /* Organic blob clipping path that matches your PDF style */
+            clip-path: path('M46.33,120.88c-7.04,19.87-18.27,38.8-33.08,53.85-4.08,4.14-8.59,8.1-11.04,13.36-3.64,7.8-2.1,16.94-.23,25.34,3.04,13.65,6.85,27.28,13.62,39.52,15.11,27.33,43.4,44.92,72.43,56.41,29.03,11.5,59.86,18.11,88.63,30.24,9.34,3.94,18.53,8.48,28.43,10.67,23.4,5.17,48.2-3.69,67.09-18.44,18.88-14.75,32.77-34.86,45.59-55.11,13.49-21.3,26.34-43.66,31.32-68.37,9.11-45.23-9.27-91.32-31.15-131.94-8.04-14.92-16.6-29.56-25.66-43.87-4.7-7.43-9.73-14.96-16.97-19.94-8.29-5.7-18.6-7.45-28.59-8.65-35.13-4.23-71.67-7.1-105.76,2.41C68.45,26.61,54.58,97.61,46.33,120.88Z');
+            animation: profileFloat 8s ease-in-out infinite;
+            transform: scale(1.42)
+        }
+
+        @keyframes profileFloat {
+            0%, 100% { 
+                /*transform: translateY(0px) rotate(0deg) scale(1.1);*/
+            clip-path: path('M46.33,130.88c-7.04,19.87-18.27,38.8-33.08,43.85-4.08,4.14-8.59,8.1-11.04,13.36-3.64,7.8-2.1,16.94-.33,25.34,3.04,13.65,6.85,27.28,13.62,39.52,15.11,27.33,43.4,44.92,72.43,56.41,29.03,11.5,59.86,18.11,88.63,30.24,9.34,3.94,18.53,8.48,28.43,10.67,23.4,5.17,48.2-3.69,67.09-18.44,18.88-14.75,32.77-34.86,45.59-55.11,13.49-21.3,26.34-43.66,31.32-68.37,9.11-45.23-9.27-91.32-31.15-131.94-8.04-14.92-16.6-29.56-25.66-43.87-4.7-7.43-9.73-14.96-16.97-19.94-8.29-5.7-18.6-7.45-28.59-8.65-35.13-4.23-71.67-7.1-105.76,2.41C68.45,26.61,54.58,97.61,46.33,120.88Z');
+            }
+            25% { 
+                /*transform: translateY(-8px) rotate(1deg) scale(1.02);*/
+            clip-path: path('M46.33,120.88c-7.04,19.87-18.27,38.8-33.08,53.85-4.08,4.14-8.59,8.1-11.04,13.36-3.64,7.8-2.1,16.94-.23,25.34,3.04,13.65,6.85,27.28,13.62,39.52,15.11,27.33,43.4,44.92,72.43,56.41,29.03,11.5,69.86,18.11,88.63,30.24,9.34,3.94,18.53,8.48,28.43,10.67,23.4,5.17,58.2-3.69,67.09-18.44,18.88-14.75,32.77-34.86,45.59-55.11,13.49-21.3,26.34-43.66,31.32-68.37,9.11-45.23-9.27-91.32-31.15-131.94-8.04-14.92-16.6-29.56-25.66-43.87-4.7-7.43-9.73-14.96-16.97-19.94-8.29-5.7-18.6-7.45-28.59-8.65-35.13-4.23-71.67-7.1-105.76,2.41C68.45,26.61,54.58,97.61,46.33,120.88Z');
+            }
+            50% { 
+                /*transform: translateY(5px) rotate(-1deg) scale(0.98);*/
+            clip-path: path('M46.33,120.88c-7.04,29.87-18.27,38.8-33.08,53.85-4.08,4.14-8.59,8.1-21.04,13.36-3.64,7.8-2.1,16.94-.23,25.34,3.04,13.65,6.85,27.28,13.62,39.52,15.11,27.33,43.4,44.92,72.43,56.41,29.03,11.5,59.86,18.11,88.63,30.24,9.34,3.94,18.53,8.48,28.43,10.67,23.4,5.17,48.2-3.69,67.09-18.44,18.88-14.75,32.77-34.86,45.59-55.11,13.49-21.3,26.34-43.66,31.32-68.37,9.11-45.23-9.27-91.32-31.15-131.94-8.04-14.92-16.6-29.56-25.66-43.87-4.7-7.43-9.73-14.96-16.97-19.94-8.29-5.7-18.6-7.45-28.59-8.65-35.13-4.23-71.67-7.1-105.76,2.41C68.45,26.61,54.58,97.61,46.33,120.88Z');
+            }
+            75% { 
+                /*transform: translateY(-3px) rotate(0.5deg) scale(1.01);*/
+            clip-path: path('M46.33,110.88c-7.04,19.87-18.27,38.8-33.08,53.85-4.08,4.14-8.59,8.1-11.04,13.36-3.64,7.8-2.1,16.94-.23,25.34,3.04,13.65,6.85,27.28,13.62,39.52,15.11,27.33,43.4,44.92,72.43,56.41,29.03,11.5,59.86,18.11,88.63,30.24,9.34,3.94,18.53,8.48,28.43,10.67,23.4,5.17,48.2-3.69,67.09-18.44,18.88-14.75,32.77-34.86,45.59-55.11,13.49-21.3,26.34-43.66,31.32-68.37,9.11-45.23-9.27-91.32-31.15-121.94-8.04-14.92-16.6-29.56-25.66-43.87-4.7-7.43-9.73-14.96-16.97-19.94-8.29-5.7-18.6-7.45-28.59-8.65-35.13-4.23-71.67-7.1-105.76,2.41C68.45,26.61,54.58,97.61,46.33,120.88Z');
+            }
+        }
+
+        .profile-image:hover {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+           
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Abstract Blob Shapes */
+        .shape {
+            position: absolute;
+            animation: morphBlob 20s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 400px;
+            top: -2%;
+            left: -12%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400"><path d="M120,80 C180,30 260,40 330,70 C400,100 450,160 440,230 C430,300 370,350 300,360 C230,370 160,340 120,290 C80,240 90,180 100,140 C110,100 60,130 120,80 Z" fill="%23fde1d3"/></svg>') center/contain no-repeat;
+            animation-delay: -5s;
+        }
+
+        .shape-2 {
+            width: 480px;
+            height: 600px;
+            bottom: -5%;
+            right: -15%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600"><path d="M240,50 C300,45 370,80 410,150 C450,220 440,290 410,360 C380,430 320,480 260,500 C200,520 140,500 100,460 C60,420 50,370 55,320 C60,270 80,220 120,180 C160,140 180,55 240,50 Z" fill="%23fde1d3"/></svg>') center/contain no-repeat;
+            animation-delay: -10s;
+        }
+
+        .shape-3 {
+            width: 420px;
+            height: 360px;
+            top: 15%;
+            right: 2%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 360"><path d="M210,40 C270,35 330,60 360,120 C390,180 380,240 350,290 C320,340 270,360 215,355 C160,350 110,315 85,270 C60,225 70,175 90,135 C110,95 150,45 210,40 Z" fill="%23fde1d3"/></svg>') center/contain no-repeat;
+            animation-delay: -15s;
+        }
+
+        .shape-4 {
+            width: 550px;
+            height: 450px;
+            bottom: 10%;
+            left: -8%;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg"><path d="M220,364.89217541536647C253.20042984175498,369.5702891597069,286.6479211771567,367.27827720165556,317.54603137886534,354.26059400358406C355.33387968137356,338.34019515952684,397.34995253217545,320.4862775273567,414.16564859636617,283.0882435607965C431.47440636350393,244.5936425390259,425.4379836492196,196.80308338898627,404.9333870039641,159.91150007134948C385.9491298100606,125.75529021708763,339.915952723963,121.23948699262475,310.14194649271604,95.93025457134577C276.381667645309,67.23251274513842,264.30932798318815,2.7262321330847668,220.00000000000006,2.7098780328079153C175.6955264580029,2.6935257242535355,165.46491629594973,69.56556108428107,129.80969577386185,95.86369586134852C94.59728842148488,121.83522599966736,25.832043064502997,111.0361847986757,15.489201168887977,153.55041336744603C4.862575188116157,197.23113578600157,63.21217600129043,225.84709951902408,89.2766761617543,262.4745826720786C105.96995622505334,285.93303499318483,117.90731135848296,311.5672872972066,140.5714947076736,329.32395865440697C163.97997459793174,347.66376282819346,190.5536096907333,360.74302542292435,220,364.89217541536647 Z" fill="%23FDE1D3" /></svg>') center/contain no-repeat;
+            animation-delay: -7s;
+        }
+
+        @keyframes morphBlob {
+            0%, 100% { 
+                transform: scale(1.2) rotate(0deg); 
+                opacity: 0.9;
+            }
+            50% { 
+                transform: scale(1.43) rotate(5deg); 
+                opacity: 0.9;
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: #6cb7a7;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #f7c9c8;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .about-card {
+            background: url('data:image/svg+xml,<svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg"><path d="M220,411.47905171460786C266.3721596468806,410.9091131096236,312.33840523250376,402.02164261620027,349.82957513380643,374.72486259069376C389.59913563580244,345.7692192327537,421.8792547094295,305.53170317480294,431.7164897079653,257.33132939640035C441.73911793515106,208.2225679543665,430.29734497055284,156.37792708862702,402.9667109413042,114.36412018529765C376.6942435213378,73.97697176147366,332.269230510935,52.397579784676395,287.2455222390421,35.244446088798334C241.45005064432831,17.79728597959205,192.5296110945401,1.3330242372620766,145.90630210061204,16.429238097539184C98.26289259091764,31.855751455584493,62.45629407725426,71.26079174346506,39.138205553013044,115.5793942899132C16.587951260875908,158.43864307677666,11.495554796311215,207.58964972728995,20.268328557941473,255.21808257723325C28.979760067043436,302.51348103750774,49.58808865681041,348.3165619391841,87.464660075511,377.9494675007045C124.471809110334,406.9021765600199,173.0164391565359,412.05650476678886,220,411.47905171460786" fill="%23FDE1D3"/></svg>') center/contain no-repeat;
+            animation: gentleFloatcard 20s ease-in-out infinite;
+            padding: 40px;
+            border-radius: 20px;
+            /*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);*/
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(45, 212, 191, 0.1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            /*box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);*/
+        }
+
+        .about-card h3 {
+            color: #f7c9c8;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+                
+        @keyframes gentleFloatcard {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale(1.12) rotate(1deg); }
+        }
+
+        /* Journey Section */
+        .journey {
+            padding: 100px 0;
+            background: linear-gradient(45deg, #198480, #198480);
+            color: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background: inherit;
+            width: 50%;
+            animation: slideIn 0.6s ease-out both;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: white;
+            border: 4px solid #2dd4bf;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #1e293b;
+            color: white;
+            text-align: center;
+        }
+
+        /* Recommendations Section */
+        .recommendations {
+            padding: 100px 0;
+            background: #6cb7a7;
+            position: relative;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .recommendation-card {
+            /*background: white;*/
+            background: url('data:image/svg+xml,<svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg"><path d="M220,411.47905171460786C261.62017271739956,409.15564318899726,303.15878587414835,405.15341040484486,338.72025599912104,383.40441395089954C376.45216225060915,360.32800309442223,409.4982421361585,328.05473015587125,424.46056250879263,286.43326386196605C439.69183734098607,244.06363293220534,437.44391762849426,196.6003500472521,420.9313837046888,154.713435843015C405.039811471387,114.40169896615018,370.17705319813064,87.00720230073077,335.5660771043482,60.936940853797566C300.3271361608602,34.39367316263281,264.07924518903224,5.194318436649242,220.00000000000006,3.364520057414977C175.04144878166016,1.4982203102380596,132.4139620810356,22.972857633167255,97.24621585632765,51.043910835228324C63.240440918055974,78.18747333053764,40.19444158897771,115.82973044561177,27.11351321668807,157.32738130693375C14.125874849435377,198.52908099814795,12.746511658333077,241.98099005652924,23.903191699592522,283.71571538521084C35.54937053510555,327.2815497581013,53.45872526530656,372.6023749595491,91.2423933148327,397.2196419646025C128.32997710511557,421.3833878333452,175.80397760952002,413.94625472016367,220,411.47905171460786" fill="%23FDE1D3" /></svg>') center/contain no-repeat;
+            padding: 40px;
+            border-radius: 20px;
+            /*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);*/
+            transition: transform 0.3s ease ;
+            border: 1px solid rgba(45, 212, 191, 0.1);
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .quote {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+
+        .author-info h4 {
+            color: #0891b2;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Compact LinkedIn Section */
+        .linkedin-container {
+            max-width: 400px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .linkedin-placeholder {
+            background: #334155;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #475569;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+
+        .linkedin-placeholder:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .linkedin-icon {
+            color: #0ea5e9;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .linkedin-placeholder p {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .linkedin-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-placeholder {
+            background: #475569;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 2px dashed #64748b;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .button-placeholder:hover {
+            border-color: #0ea5e9;
+        }
+
+        .placeholder-text {
+            color: #94a3b8;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .profile-image {
+                width: 480px;
+                height: 480px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+
+            .nav {
+                top: 20px;
+                right: 20px;
+                padding: 8px 15px;
+            }
+
+            .nav a {
+                margin: 0 8px;
+                font-size: 0.9rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .recommendation-card {
+                padding: 30px;
+            }
+
+            .linkedin-container {
+                max-width: 350px;
+                margin: 30px auto;
+            }
+
+            .linkedin-placeholder {
+                padding: 25px;
+            }
+        }
+
+        /* Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#journey">Journey</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="hero-content">
+            <div class="profile-image"></div>
+            <h1>Jordan Ronchetti</h1>
+            <h2>The Journey So Far</h2>
+            <a href="#about" class="cta-button">Discover My Story</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card fade-in">
+                    <h3>🎯 Vision</h3>
+                    <p>Passionate about creating meaningful experiences and driving positive change through innovation and creativity. Every project is an opportunity to make a lasting impact.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <h3>💡 Approach</h3>
+                    <p>I believe in the power of collaboration, continuous learning, and pushing boundaries. My approach combines strategic thinking with hands-on execution.</p>
+                </div>
+                <div class="about-card fade-in">
+                    <h3>🌟 Values</h3>
+                    <p>Integrity, creativity, and excellence guide everything I do. I'm committed to delivering results that exceed expectations while maintaining authentic relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="journey">
+        <div class="container">
+            <h2 class="section-title">My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Creative Designer 2011 - 2019</h3>
+                        <p>Creative Designer specialising in girls' brands—specifically Barbie and Monster High—across multiple product categories, with a focus on softlines and fast fashion.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Lead Designer Hardlines 2019 - 2021</h3>
+                        <p>Served as the Lead Designer managing Tier 1 licensed hardlines partners across EMEA for all Mattel brands, including Barbie, Hot Wheels, and Fisher-Price.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Creative Manager - Consumer Products 2021 - 2025</h3>
+                        <p>As Creative Manager at Mattel, I led cross-functional creative projects and developed brand strategies that aligned with the company’s global vision. </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Next Challenge...</h3>
+                        <p>I am looking to step out of my comfort zone and experiance new challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations" class="recommendations">
+        <div class="container">
+            <h2 class="section-title">What People Say</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-card fade-in">
+                    <div class="quote">
+                        "I have had the chance to work with Jordan for almost 2 years and she would be an incredible addition to any design team. She is very commercial minded and great to work with! 
+She is incredibly communicative and a true team player."
+                    </div>
+                    <div class="author">
+                        <div class="author-info">
+                            <h4>Jessica Nioncel</h4>
+                            <p>Soft lines Manager EMEA, Mattel</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card fade-in">
+                    <div class="quote">
+                        "Jordan has an exceptional ability to combine imaginative ideas with strategic thinking, ensuring every project not only looks incredible but also delivers real impact. Her attention to detail, collaborative approach, and ability to anticipate challenges make her a true asset to any team."
+                    </div>
+                    <div class="author">
+                        <div class="author-info">
+                            <h4>Jason Knights</h4>
+                            <p>MD, Blue Kangaroo Design</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card fade-in">
+                    <div class="quote">
+                        "I would hire Jordan in a heartbeat if I had the opportunity. It's a rare blend to be lead my creative thinking and guided by commercial parameters. This is Jordan- with a sparkle in her eyes."
+                    </div>
+                    <div class="author">
+                        <div class="author-info">
+                            <h4>Helena Perheentupa</h4>
+                            <p>Senior Consultant, StrateDoo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="linkedin-container">
+                <div class="linkedin-placeholder">
+                    <div class="linkedin-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </div>
+                    <p>Connect with me on LinkedIn</p>
+                    <div class="linkedin-button">
+                        <div class="button-placeholder">
+                            <div class="placeholder-text">linkedin.com/in/jordan-ronchetti</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // LinkedIn placeholder interaction
+        document.querySelector('.linkedin-placeholder').addEventListener('click', function() {
+            // In a real implementation, this would open the actual LinkedIn profile
+            alert('This would open Jordan\'s LinkedIn profile: linkedin.com/in/jordan-ronchetti');
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+    </script>
+</body>
+</html>
